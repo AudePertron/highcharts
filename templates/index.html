@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+   <body>
+
+      <h1>Coucou Stéphane</h1>
+
+      <p>Diriez-vous que votre vie quotidienne est aujourd'hui touchée par le changement climatique ? <br>
+         Oui : {{quotidien_oui}} %<br>
+         Non : {{quotidien_non}} %<br>
+      </p>
+      <p>Par rapport à votre mode de chauffage actuel, pensez-vous qu'il existe des solutions alternatives plus écologiques ? <br>
+         Oui : {{chauffage_oui}} %<br>
+         Non : {{chauffage_non}} %<br>
+      </p>
+      <p>À titre personnel, pensez-vous pouvoir contribuer à protéger l'environnement ? <br>
+         Oui : {{personnel_oui}} %<br>
+         Non : {{personnel_non}} %<br>
+      </p>
+<!-- ##############################highcharts################################################# -->
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+
+
+<figure class="highcharts-figure">
+   <div id="container"></div>
+   <p class="highcharts-description">
+      Observation des chiffres
+   </p>
+ </figure>
+
+      <script>
+            Highcharts.chart('container', {
+  chart: {
+    type: 'bar'
+  },
+  title: {
+    text: "Implication des gens dans le changement climatique"
+  },
+
+  xAxis: {
+    categories: ['Quotidien', 'Personnel', 'Chauffage'],
+    title: {
+      text: null
+    }
+  },
+  yAxis: {
+    min: 0,
+    title: {
+      text: 'Pourcentage',
+      align: 'high'
+    },
+    labels: {
+      overflow: 'justify'
+    }
+  },
+  tooltip: {
+    valueSuffix: ' %'
+  },
+  plotOptions: {
+    bar: {
+      dataLabels: {
+        enabled: true
+      }
+    }
+  },
+  legend: {
+    layout: 'vertical',
+    align: 'right',
+    verticalAlign: 'top',
+    x: -40,
+    y: 80,
+    floating: true,
+    borderWidth: 1,
+    backgroundColor:
+      Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF',
+    shadow: true
+  },
+  credits: {
+    enabled: false
+  },
+
+
+  series: [{
+    name: 'Oui',
+    data: [{{quotidien_oui}}, {{chauffage_oui}}, {{personnel_oui}} ]
+  }, {
+    name: 'Non',
+    data: [{{quotidien_non}}, {{chauffage_non}}, {{personnel_non}}]
+  }, ]
+
+
+
+
+
+//   series: [{
+//     name: 'Quotidien',
+//     data: [{{quotidien_oui}}, {{quotidien_non}}]
+//   }, {
+//     name: 'Chauffage',
+//     data: [{{chauffage_oui}}, {{chauffage_non}}]
+//   }, {
+//     name: 'Personnel',
+//     data: [{{personnel_oui}}, {{personnel_non}}]
+//   }]
+});
+
+
+
+
+      </script>
+
+   </body>
+</html>
